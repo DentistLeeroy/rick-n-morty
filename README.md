@@ -29,7 +29,7 @@ Assess and use what you see for fit for the Locations page.
 
 # Integration/Backend
 
-You'll be getting data from this API, using GraphQL (GraphiQL explorer).
+You'll be getting data from this API (https://rickandmortyapi.com/documentation/#graphql), using GraphQL ([GraphiQL explorer](https://rickandmortyapi.com/graphql)).
 You will not be using REST endpoints in this assignment, and you're not allowed to use their client.
 
 # Requirements
