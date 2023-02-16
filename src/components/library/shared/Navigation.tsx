@@ -1,16 +1,15 @@
 import styles from "./Nav.module.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-interface NavProps {
-}
+export default function Navigation() {
 
-export default function Navigation({}: NavProps) {
+    const location = useLocation();
 
     return (
-        <nav>
-            <Link to="/" >Charecters</Link>
-            <Link to="/locations" >Locations</Link>
-            <Link to="/episodes" >Episodes</Link>
+        <nav className={styles.navigation}>
+            <Link className={location.pathname == "/" ? styles.active : ""} to="/" >Charecters</Link>
+            <Link className={location.pathname.includes("/locations") ? styles.active : ""} to="/locations" >Locations</Link>
+            <Link className={location.pathname.includes("/episodes") ? styles.active : ""} to="/episodes" >Episodes</Link>
         </nav>
     );
 }

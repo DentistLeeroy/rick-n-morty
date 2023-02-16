@@ -1,0 +1,28 @@
+.navigation {
+    display: flex;
+
+}
+
+.navigation a {
+    margin-right: 30px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    color: #000000;
+    text-decoration: none;
+}
+
+.navigation a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
+.navigation a:last-child {
+    margin-right: 0;
+}
+
+.active {
+    text-decoration: underline !important;
+    text-decoration-thickness: 3px !important;
+    text-decoration-color: #00B0C8 !important;
+}
