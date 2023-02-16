@@ -1,14 +1,11 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import Header from "./components/library/shared/Header";
 
 function App() {
 
   return (
     <div>
-      <header>
-        <Link to="/" >Charecters</Link>
-        <Link to="/locations" >Locations</Link>
-        <Link to="/episodes" >Episodes</Link>
-      </header>
+      <Header />
       <Routes>
         <Route path="/" element={<h1>Charecters</h1>}/>
         <Route path="/locations" element={<h1>Locations</h1>}/>
