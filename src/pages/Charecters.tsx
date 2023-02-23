@@ -11,16 +11,7 @@ export default function Charecters() {
           results {
             name
             species
-            status
             image
-            gender
-            type
-            origin {
-              name
-            }
-            location {
-              name
-            }
           }
         }
       }
