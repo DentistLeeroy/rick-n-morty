@@ -6,24 +6,14 @@ import {useQuery, gql} from '@apollo/client';
 export default function Episodes() {
 
     const EPISODES_QUERY = gql `
-    query allCharacters {
-        characters {
-          results {
-            name
-            species
-            status
-            image
-            gender
-            type
-            origin {
-              name
-            }
-            location {
-              name
-            }
-          }
+    query allLocations {
+      episodes{
+        results{
+          name,
+          air_date
         }
       }
+}
     `;
 
     const { loading, error, data } = useQuery(EPISODES_QUERY);
@@ -41,7 +31,7 @@ export default function Episodes() {
               {data &&
                 data.episodes.results.map((episode:any, index:any) => {
                   return (
-                    <Card key={index} image={episode.image} title={episode.name} subtitle={episode.species} />
+                    <Card key={index} title={episode.name} subtitle={episode.air_date} />
                   );
               })}
 

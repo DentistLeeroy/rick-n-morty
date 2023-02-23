@@ -3,7 +3,7 @@ import LogoTitle from "../assets/logo-outline.png"
 import Card from "../components/library/visual/Card";
 import {useQuery, gql} from '@apollo/client';
 
-export default function Charecters() {
+export default function Locations() {
 
     const LOCATIONS_QUERY = gql `
     query allLocations {
@@ -15,6 +15,7 @@ export default function Charecters() {
           created
         }
       }
+}
     `;
 
     const { loading, error, data } = useQuery(LOCATIONS_QUERY);
@@ -22,6 +23,9 @@ export default function Charecters() {
     if(loading) {
       return <p>Loading ...</p>
     }
+
+    console.log(data);
+    
 
     return(
         <div className={styles.locations}>
@@ -32,7 +36,7 @@ export default function Charecters() {
               {data &&
                 data.locations.results.map((location:any, index:any) => {
                   return (
-                    <Card key={index} image={location.image} title={location.name} subtitle={location.species} />
+                    <Card key={index} title={location.name} subtitle={location.type} />
                   );
               })}
 
