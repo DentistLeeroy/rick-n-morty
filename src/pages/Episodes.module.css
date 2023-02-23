@@ -1,0 +1,9 @@
+.episodes {
+    margin: 0 300px;
+}
+
+.episodesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
