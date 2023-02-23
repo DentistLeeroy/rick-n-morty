@@ -1,9 +1,8 @@
-.characters {
+.locations {
     margin: 0 300px;
 }
 
-
-.charactersContainer {
+.locationsContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;

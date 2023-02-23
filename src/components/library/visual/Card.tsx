@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './CardStyle.css';
+import styles from './Card.module.css';
 
 interface CardProps {
   image?: string;
@@ -21,7 +21,7 @@ export default function Card({
 
   return (
     <div 
-      className="cardComponent" 
+      className={styles.cardComponent} 
       onClick={onClick} 
       onMouseEnter={() => setGifVisible(true)}
       onMouseLeave={() => setGifVisible(false)}
