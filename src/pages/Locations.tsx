@@ -6,22 +6,13 @@ import {useQuery, gql} from '@apollo/client';
 export default function Charecters() {
 
     const LOCATIONS_QUERY = gql `
-    query allCharacters {
-        characters {
-          results {
-            name
-            species
-            status
-            image
-            gender
-            type
-            origin {
-              name
-            }
-            location {
-              name
-            }
-          }
+    query allLocations {
+      locations {
+        results{
+          name,
+          type,
+          dimension,
+          created
         }
       }
     `;
