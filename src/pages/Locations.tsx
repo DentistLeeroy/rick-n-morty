@@ -9,6 +9,7 @@ export default function Locations() {
     query allLocations {
       locations {
         results{
+          id,
           name,
           type,
           dimension,
@@ -34,9 +35,9 @@ export default function Locations() {
               {loading && <p>Loading ...</p>}
               {error && <p>There was an unexpected error</p>}
               {data &&
-                data.locations.results.map((location:any, index:any) => {
+                data.locations.results.map((location:any) => {
                   return (
-                    <Card key={index} title={location.name} subtitle={location.type} />
+                    <Card key={location.id} title={location.name} subtitle={location.type} />
                   );
               })}
 

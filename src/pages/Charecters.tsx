@@ -9,8 +9,9 @@ export default function Charecters() {
     query allCharacters {
         characters {
           results {
-            name
-            species
+            id,
+            name,
+            species,
             image
           }
         }
@@ -19,9 +20,9 @@ export default function Charecters() {
 
     const { loading, error, data } = useQuery(CHARACTERS_QUERY);
 
-    if(loading) {
-      return <p>Loading ...</p>
-    }
+    // if(loading) {
+    //   return <p>Loading ...</p>
+    // }
 
     return(
         <div className={styles.characters}>
@@ -30,9 +31,9 @@ export default function Charecters() {
               {loading && <p>Loading ...</p>}
               {error && <p>There was an unexpected error</p>}
               {data &&
-                data.characters.results.map((character:any, index:any) => {
+                data.characters.results.map((character:any) => {
                   return (
-                    <Card key={index} image={character.image} title={character.name} subtitle={character.species} />
+                    <Card key={character.id} image={character.image} title={character.name} subtitle={character.species} />
                   );
               })}
 

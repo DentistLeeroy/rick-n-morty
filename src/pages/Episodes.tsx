@@ -6,9 +6,10 @@ import {useQuery, gql} from '@apollo/client';
 export default function Episodes() {
 
     const EPISODES_QUERY = gql `
-    query allLocations {
+    query allEpisodes {
       episodes{
         results{
+          id,
           name,
           air_date
         }
@@ -18,9 +19,9 @@ export default function Episodes() {
 
     const { loading, error, data } = useQuery(EPISODES_QUERY);
 
-    if(loading) {
-      return <p>Loading ...</p>
-    }
+    // if(loading) {
+    //   return <p>Loading ...</p>
+    // }
 
     return(
         <div className={styles.episodes}>
@@ -29,9 +30,9 @@ export default function Episodes() {
               {loading && <p>Loading ...</p>}
               {error && <p>There was an unexpected error</p>}
               {data &&
-                data.episodes.results.map((episode:any, index:any) => {
+                data.episodes.results.map((episode:any) => {
                   return (
-                    <Card key={index} title={episode.name} subtitle={episode.air_date} />
+                    <Card key={episode.id} title={episode.name} subtitle={episode.air_date} />
                   );
               })}
 
