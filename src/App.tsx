@@ -5,6 +5,7 @@ import Footer from "./components/library/shared/Footer";
 import Charecters from "./pages/Charecters";
 import Locations from "./pages/Locations";
 import Episodes from "./pages/Episodes";
+import Charecter from "./pages/Charecter";
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Charecters/>}/>
+        <Route path="/:id" element={<Charecter/>}/>
         <Route path="/locations" element={<Locations/>}/>
         <Route path="/episodes" element={<Episodes/>}/>
       </Routes>

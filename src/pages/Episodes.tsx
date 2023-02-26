@@ -19,10 +19,6 @@ export default function Episodes() {
 
     const { loading, error, data } = useQuery(EPISODES_QUERY);
 
-    // if(loading) {
-    //   return <p>Loading ...</p>
-    // }
-
     return(
         <div className={styles.episodes}>
             <img src={LogoTitle} alt="movie title" style={{display: "block", margin: "0 auto", width: "30%"}}/>

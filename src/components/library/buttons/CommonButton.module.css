@@ -1,0 +1,35 @@
+.commonButton {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 1.25px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    color: #49454F;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.commonButton:hover {
+    cursor: pointer;
+}
+
+.primary {
+    padding: 8.9px 40px;
+    background-color: #87FD6E80;
+    border: 2px solid #00000000;
+}
+
+.primary:hover {
+    background-color: #87FD6E;
+}
+
+.secondary {
+    padding: 8.9px 40px;
+    background-color: #ffffff;
+    border: 2px solid #00B0C8;
+}
+
+.secondary:hover {
+    background-color: #00B0C8;
+    color: #ffffff;
+}

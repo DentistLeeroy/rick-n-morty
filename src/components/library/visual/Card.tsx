@@ -1,34 +1,21 @@
-import React, { useState } from 'react';
-import styles from './Card.module.css';
+import styles from "./Card.module.css";
 
 interface CardProps {
-  image?: string;
-  gif?: string;
+  image: string;
   title: string;
   subtitle: string;
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
-export default function Card({
-    image = "./src/assets/ricknmorty.png",
-    gif = "./src/assets/blink.gif",
-    title,
-    subtitle,
-    onClick,
-  }: CardProps) {
+export default function Card({onClick, image = "./src/assets/ricknmorty.png", title, subtitle}: CardProps) {
 
-  const [isGifVisible, setGifVisible] = useState(false);
-
-  return (
-    <div 
-      className={styles.cardComponent} 
-      onClick={onClick} 
-      onMouseEnter={() => setGifVisible(true)}
-      onMouseLeave={() => setGifVisible(false)}
-    >
-      <img src={isGifVisible ? gif : image} alt={title} />
-      <h2>{title}</h2>
-      <h3>{subtitle}</h3>
-    </div>
-  );
-};
+    return (
+        <div className={styles.card} onClick={onClick}>
+          <img src={image} alt={title} />
+          <div>
+            <h3>{title}</h3>
+            <p>{subtitle}</p>
+          </div>
+        </div>
+    );
+}
