@@ -1,0 +1,30 @@
+.listItemMany {
+    width: 100%;
+    padding: 10px 15px;
+    border-bottom: 1px solid #87FD6E;
+}
+
+.listItemMany h3 {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: #49454F;
+}
+
+.listItemMany p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px; 
+    letter-spacing: 0.25px;
+    color: #6E798C;
+    border-bottom: 1px solid #87FD6E;
+    margin: 0 -10px;
+    padding: 10px;
+}
+
+.listItemMany p:last-child {
+    border: none;
+    margin: 0 -10px -10px -10px;
+    padding: 10px;
+}

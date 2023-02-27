@@ -1,0 +1,27 @@
+.location {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 50px 0 200px 0;
+}
+
+.location button {
+    position: absolute;
+    top: 100px;
+    left: 250px;
+}
+
+.location h1 {
+    width: 415px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 56px;
+    color: #081F32;
+}
+
+.list {
+    width: 415px;
+    margin-top: 60px;
+}

@@ -5,7 +5,7 @@ import {useQuery, gql} from '@apollo/client';
 import { useNavigate } from "react-router-dom";
 import CommonButton from "../components/library/buttons/CommonButton";
 
-export default function Charecters() {
+export default function Characters() {
 
   const CHARACTERS_QUERY = gql `
   query allCharacters {

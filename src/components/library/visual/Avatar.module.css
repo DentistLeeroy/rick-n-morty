@@ -1,0 +1,14 @@
+.avatar {
+    width: 300px;
+    margin-bottom: 15px;
+    border: 5px solid #F2F2F7;
+    border-radius: 100%;
+}
+
+.Alive, .unknown {
+    filter: grayscale(0);    
+}
+
+.Dead {
+    filter: grayscale(1);
+}

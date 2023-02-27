@@ -1,0 +1,21 @@
+.listItem {
+    width: 100%;
+    padding: 10px 15px;
+    border-bottom: 1px solid #87FD6E;
+}
+
+.listItem h3 {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: #49454F;
+}
+
+.listItem p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px; 
+    letter-spacing: 0.25px;
+    color: rgba(73, 69, 79, 0.6);
+}

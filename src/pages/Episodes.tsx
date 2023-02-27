@@ -1,38 +1,46 @@
 import styles from "./Episodes.module.css"
 import LogoTitle from "../assets/logo-outline.png"
-import Card from "../components/library/visual/Card";
 import {useQuery, gql} from '@apollo/client';
+import CardWithoutImage from "../components/library/visual/CardWithoutImage";
+import { useNavigate } from "react-router-dom";
+import CommonButton from "../components/library/buttons/CommonButton";
 
 export default function Episodes() {
 
-    const EPISODES_QUERY = gql `
-    query allEpisodes {
-      episodes{
-        results{
-          id,
-          name,
-          air_date
-        }
+  const EPISODES_QUERY = gql `
+  query allEpisodes {
+    episodes{
+      results{
+        id,
+        name,
+        episode,
       }
-}
-    `;
+    }
+  }`;
 
-    const { loading, error, data } = useQuery(EPISODES_QUERY);
+  const navigate = useNavigate();
 
-    return(
-        <div className={styles.episodes}>
-            <img src={LogoTitle} alt="movie title" style={{display: "block", margin: "0 auto", width: "30%"}}/>
-            <div className={styles.episodesContainer}>
-              {loading && <p>Loading ...</p>}
-              {error && <p>There was an unexpected error</p>}
-              {data &&
-                data.episodes.results.map((episode:any) => {
-                  return (
-                    <Card key={episode.id} title={episode.name} subtitle={episode.air_date} />
-                  );
-              })}
+  const { loading, error, data } = useQuery(EPISODES_QUERY);
 
-            </div>
-        </div>
-    );
+  return(
+    <div className={styles.episodes}>
+      <img src={LogoTitle} alt="Logo"/>
+      <div className={styles.episodesContainer}>
+        {loading && <p>Loading ...</p>}
+        {error && <p>There was an unexpected error</p>}
+        {data && data.episodes.results.map((episode:any) => {
+
+          function click() {
+            navigate(`/episodes/${episode.id}`);
+          }
+
+          return (
+            <CardWithoutImage key={episode.id} title={episode.name} subtitle={episode.episode} onClick={click} />
+          );
+        
+        })}
+      </div>
+      <CommonButton label="Load more" variant="primary" />
+    </div>
+  );
 }

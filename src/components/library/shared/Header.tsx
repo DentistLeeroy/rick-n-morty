@@ -12,7 +12,7 @@ export default function Header() {
                 <img src={Logo} alt="Logo" />
             </Link>
             <nav className={styles.navigation}>
-                <Link className={location.pathname == "/" ? styles.active : ""} to="/" >Charecters</Link>
+                <Link className={location.pathname == "/" ? styles.active : ""} to="/" >Characters</Link>
                 <Link className={location.pathname.includes("/locations") ? styles.active : ""} to="/locations" >Locations</Link>
                 <Link className={location.pathname.includes("/episodes") ? styles.active : ""} to="/episodes" >Episodes</Link>
             </nav>
