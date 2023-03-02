@@ -8,11 +8,9 @@ import { useState } from "react";
 
 export default function Characters() {
 
-  const [offset, setOffset] = useState(0);
-
   const CHARACTERS_QUERY = gql `
-  query allCharacters {
-    characters {
+  query allCharacters($currentPage: Int) {
+    characters(page: $currentPage) {
       results {
         id
         name
@@ -22,16 +20,23 @@ export default function Characters() {
     }
   }`;
 
-  const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const handleLoadMore = () => {
-    setOffset((offset) => offset + 20);
-  };
+  const navigate = useNavigate();
 
   const { loading, error, data } = useQuery<any>(CHARACTERS_QUERY, {
     variables: {
+      currentPage: currentPage,
     }
   });
+
+  const [allData, setAllData] = useState(data);
+
+  const handleLoadMore = () => {
+    setCurrentPage((currentPage) => currentPage + 1);
+    setAllData([...allData, data]);
+    console.log(allData)
+  };
 
   return(
     <div className={styles.characters}>
@@ -39,10 +44,10 @@ export default function Characters() {
         <div className={styles.charactersContainer}>
           {loading && <p>Loading ...</p>}
           {error && <p>There was an unexpected error</p>}
-          {data && data?.characters?.results.map((character:any) => {
+          {data && data.characters.results.map((character:any) => {
             
             function cardClick() {
-              navigate(`/${character?.id}`);
+              navigate(`/${character.id}`);
             }
               
             return (

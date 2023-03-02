@@ -33,9 +33,9 @@ export default function Episodes() {
   useEffect(()=> {
 
     if(data) {
-      if(data.locations.results.length < 20) {
+      if(data.episodes.results.length < 20) {
         setLastPage(currentPage);
-      } else if(data.locations.results.length == 0) {
+      } else if(data.episodes.results.length == 0) {
         setLastPage((lastPage) => lastPage - 1);
       }
     }

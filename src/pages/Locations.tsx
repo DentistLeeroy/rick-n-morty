@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 
 export default function Locations() {
 
-  
   const LOCATIONS_QUERY = gql `
   query allLocations($currentPage: Int) {
     locations(page: $currentPage) {
