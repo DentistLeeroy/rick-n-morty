@@ -21,7 +21,7 @@ export default function Episodes() {
 
   const navigate = useNavigate();
 
-  const { loading, error, data } = useQuery<allEpisodes>(EPISODES_QUERY);
+  const { loading, error, data } = useQuery<any>(EPISODES_QUERY);
 
   return(
     <div className={styles.episodes}>

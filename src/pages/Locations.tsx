@@ -37,7 +37,7 @@ export default function Locations() {
 
   const navigate = useNavigate();
 
-  const { loading, error, data } = useQuery<allLocations>(LOCATIONS_QUERY, {
+  const { loading, error, data } = useQuery<any>(LOCATIONS_QUERY, {
     variables: {
       currentPage: currentPage,
     }

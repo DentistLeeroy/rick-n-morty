@@ -29,7 +29,7 @@ export default function Characters() {
     setOffset((offset) => offset + 20);
   };
 
-  const { loading, error, data } = useQuery<allCharacters>(CHARACTERS_QUERY, {
+  const { loading, error, data } = useQuery<any>(CHARACTERS_QUERY, {
     variables: {
       limit: 20,
       offset: offset,
@@ -42,10 +42,10 @@ export default function Characters() {
         <div className={styles.charactersContainer}>
           {loading && <p>Loading ...</p>}
           {error && <p>There was an unexpected error</p>}
-          {data && data.characters.results.map((character:any) => {
+          {data && data?.characters?.results.map((character:any) => {
             
             function cardClick() {
-              navigate(`/${character.id}`);
+              navigate(`/${character?.id}`);
             }
               
             return (

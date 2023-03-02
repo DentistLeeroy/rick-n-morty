@@ -6,6 +6,7 @@ import ListItem from "../components/library/visual/ListItem";
 import Avatar from "../components/library/visual/Avatar";
 import ListItemMany from "../components/library/visual/ListItemMany";
 import { allCharacters } from "./__generated__/allCharacters";
+import { specificCharacter } from "./__generated__/specificCharacter";
 
 export default function Character() {
 
@@ -38,7 +39,7 @@ export default function Character() {
 
   const navigate = useNavigate();
 
-  const { loading, error, data } = useQuery<allCharacters>(CHARACTER_QUERY, {
+  const { loading, error, data } = useQuery<any>(CHARACTER_QUERY, {
     variables: {
       id: id,
     }
@@ -52,7 +53,7 @@ export default function Character() {
     <>
       {loading && <p>Loading ...</p>}
       {error && <p>There was an unexpected error</p>}
-      {data && <div className={styles.character}>
+      {data.character && <div className={styles.character}>
           <CommonButton variant="secondary" label="Go back" onClick={goBack} />
           <Avatar status={data.character.status} image={data.character.image} character={data.character.name} />
           <h1>{data.character.name}</h1>

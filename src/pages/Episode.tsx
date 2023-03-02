@@ -26,7 +26,7 @@ export default function Episode() {
 
   const navigate = useNavigate();
 
-  const { loading, error, data } = useQuery<specificEpisode>(EPISODE_QUERY, {
+  const { loading, error, data } = useQuery<any>(EPISODE_QUERY, {
     variables: {
       id: id,
     }
