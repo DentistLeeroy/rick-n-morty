@@ -10,8 +10,8 @@ export default function Episode() {
   let { id } = useParams();
 
   const EPISODE_QUERY = gql `
-  query specificEpisode {
-    episode(id:${id}) {
+  query specificEpisode($id: Int) {
+    episode(id: $id) {
         id,
         name,
         air_date,
@@ -25,7 +25,11 @@ export default function Episode() {
 
   const navigate = useNavigate();
 
-  const { loading, error, data } = useQuery(EPISODE_QUERY);
+  const { loading, error, data } = useQuery(EPISODE_QUERY, {
+    variables: {
+      id: id,
+    }
+  });
 
   function goBack() {
     navigate(-1);

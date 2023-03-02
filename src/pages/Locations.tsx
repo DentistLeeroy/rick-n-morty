@@ -8,11 +8,11 @@ import { useState } from "react";
 
 export default function Locations() {
 
-  const [locationCount, setLocationCount] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const LOCATIONS_QUERY = gql `
-  query allLocations {
-    locations(page:${locationCount}) {
+  query allLocations($currentPage: Int) {
+    locations(page: $currentPage) {
       results{
         id,
         name,
@@ -23,20 +23,24 @@ export default function Locations() {
   `;
 
   const nextPage = () => {
-    setLocationCount((prevLocationCount) => prevLocationCount + 1);
+    setCurrentPage((currentPage) => currentPage + 1);
   };
 
   const previousPage = () => {
-    if(locationCount == 1){
-      setLocationCount(1)
+    if(currentPage == 1){
+      setCurrentPage(1)
     } else {
-      setLocationCount((prevLocationCount) => prevLocationCount - 1);
+      setCurrentPage((currentPage) => currentPage - 1);
     }
   };
 
   const navigate = useNavigate();
 
-  const { loading, error, data } = useQuery(LOCATIONS_QUERY);
+  const { loading, error, data } = useQuery(LOCATIONS_QUERY, {
+    variables: {
+      currentPage: currentPage,
+    }
+  });
 
   return(
     <div className={styles.locations}>
@@ -58,7 +62,7 @@ export default function Locations() {
       </div>
       <div className={styles.pagination}>
         <CommonButton label="< Previous" variant="primary" onClick={previousPage} />
-        <p>Page: {locationCount}</p>
+        <p>Page: {currentPage}</p>
         <CommonButton label="Next >" variant="primary" onClick={nextPage} />
       </div>
     </div>

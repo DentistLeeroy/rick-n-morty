@@ -40,7 +40,8 @@ export default function Character() {
   const { loading, error, data } = useQuery(CHARACTER_QUERY, {
     variables: {
       id: id,
-    }});
+    }
+  });
 
   function goBack() {
     navigate(-1);

@@ -10,8 +10,8 @@ export default function Location() {
   let { id } = useParams();
 
   const LOCATION_QUERY = gql `
-  query specificLocation {
-    location(id:${id}) {
+  query specificLocation($id: Int) {
+    location(id:$id) {
         id,
         name,
         type,
@@ -25,7 +25,11 @@ export default function Location() {
 
   const navigate = useNavigate();
 
-  const { loading, error, data } = useQuery(LOCATION_QUERY);
+  const { loading, error, data } = useQuery(LOCATION_QUERY, {
+    variables: {
+      id: id,
+    }
+  });
 
   function goBack() {
     navigate(-1);

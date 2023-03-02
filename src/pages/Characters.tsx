@@ -11,8 +11,8 @@ export default function Characters() {
   const [visibleCards, setVisibleCards] = useState(1);
 
   const CHARACTERS_QUERY = gql `
-  query allCharacters {
-    characters(page:${visibleCards}) {
+  query allCharacters($visibleCards: Int) {
+    characters(page: $visibleCards) {
       results {
         id
         name
@@ -28,7 +28,11 @@ export default function Characters() {
     setVisibleCards((prevVisibleCards) => prevVisibleCards + 1);
   };
 
-  const { loading, error, data } = useQuery(CHARACTERS_QUERY);
+  const { loading, error, data } = useQuery(CHARACTERS_QUERY, {
+    variables: {
+      visibleCards: visibleCards,
+    }
+  });
 
   return(
     <div className={styles.characters}>
