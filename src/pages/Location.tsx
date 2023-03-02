@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import CommonButton from "../components/library/buttons/CommonButton";
 import ListItem from "../components/library/visual/ListItem";
 import ListItemMany from "../components/library/visual/ListItemMany";
+import { allLocations } from "./__generated__/allLocations";
 
 export default function Location() {
 
@@ -25,7 +26,7 @@ export default function Location() {
 
   const navigate = useNavigate();
 
-  const { loading, error, data } = useQuery(LOCATION_QUERY, {
+  const { loading, error, data } = useQuery<allLocations>(LOCATION_QUERY, {
     variables: {
       id: id,
     }

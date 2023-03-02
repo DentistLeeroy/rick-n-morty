@@ -5,6 +5,7 @@ import CardWithoutImage from "../components/library/visual/CardWithoutImage";
 import { useNavigate } from "react-router-dom";
 import CommonButton from "../components/library/buttons/CommonButton";
 import { useState } from "react";
+import { allLocations } from "./__generated__/allLocations";
 
 export default function Locations() {
 
@@ -36,7 +37,7 @@ export default function Locations() {
 
   const navigate = useNavigate();
 
-  const { loading, error, data } = useQuery(LOCATIONS_QUERY, {
+  const { loading, error, data } = useQuery<allLocations>(LOCATIONS_QUERY, {
     variables: {
       currentPage: currentPage,
     }

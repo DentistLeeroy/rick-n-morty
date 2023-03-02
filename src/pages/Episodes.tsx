@@ -4,6 +4,7 @@ import {useQuery, gql} from '@apollo/client';
 import CardWithoutImage from "../components/library/visual/CardWithoutImage";
 import { useNavigate } from "react-router-dom";
 import CommonButton from "../components/library/buttons/CommonButton";
+import { allEpisodes } from "./__generated__/allEpisodes";
 
 export default function Episodes() {
 
@@ -20,7 +21,7 @@ export default function Episodes() {
 
   const navigate = useNavigate();
 
-  const { loading, error, data } = useQuery(EPISODES_QUERY);
+  const { loading, error, data } = useQuery<allEpisodes>(EPISODES_QUERY);
 
   return(
     <div className={styles.episodes}>

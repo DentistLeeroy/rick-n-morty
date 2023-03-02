@@ -5,6 +5,7 @@ import {useQuery, gql} from '@apollo/client';
 import { useNavigate } from "react-router-dom";
 import CommonButton from "../components/library/buttons/CommonButton";
 import { useState } from "react";
+import { allCharacters } from "./__generated__/allCharacters";
 
 export default function Characters() {
 
@@ -28,7 +29,7 @@ export default function Characters() {
     setVisibleCards((prevVisibleCards) => prevVisibleCards + 1);
   };
 
-  const { loading, error, data } = useQuery(CHARACTERS_QUERY, {
+  const { loading, error, data } = useQuery<allCharacters>(CHARACTERS_QUERY, {
     variables: {
       visibleCards: visibleCards,
     }

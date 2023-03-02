@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import CommonButton from "../components/library/buttons/CommonButton";
 import ListItem from "../components/library/visual/ListItem";
 import ListItemMany from "../components/library/visual/ListItemMany";
+import { specificEpisode } from "./__generated__/specificEpisode";
 
 export default function Episode() {
 
@@ -25,7 +26,7 @@ export default function Episode() {
 
   const navigate = useNavigate();
 
-  const { loading, error, data } = useQuery(EPISODE_QUERY, {
+  const { loading, error, data } = useQuery<specificEpisode>(EPISODE_QUERY, {
     variables: {
       id: id,
     }

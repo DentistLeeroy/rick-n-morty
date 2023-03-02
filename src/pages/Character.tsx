@@ -5,6 +5,7 @@ import CommonButton from "../components/library/buttons/CommonButton";
 import ListItem from "../components/library/visual/ListItem";
 import Avatar from "../components/library/visual/Avatar";
 import ListItemMany from "../components/library/visual/ListItemMany";
+import { allCharacters } from "./__generated__/allCharacters";
 
 export default function Character() {
 
@@ -37,7 +38,7 @@ export default function Character() {
 
   const navigate = useNavigate();
 
-  const { loading, error, data } = useQuery(CHARACTER_QUERY, {
+  const { loading, error, data } = useQuery<allCharacters>(CHARACTER_QUERY, {
     variables: {
       id: id,
     }
