@@ -4,12 +4,15 @@ import {useQuery, gql} from '@apollo/client';
 import CardWithoutImage from "../components/library/visual/CardWithoutImage";
 import { useNavigate } from "react-router-dom";
 import CommonButton from "../components/library/buttons/CommonButton";
+import { useState } from "react";
 
 export default function Locations() {
 
+  const [locationCount, setLocationCount] = useState(1);
+
   const LOCATIONS_QUERY = gql `
   query allLocations {
-    locations {
+    locations(page:${locationCount}) {
       results{
         id,
         name,
@@ -18,6 +21,18 @@ export default function Locations() {
     }
   }
   `;
+
+  const nextPage = () => {
+    setLocationCount((prevLocationCount) => prevLocationCount + 1);
+  };
+
+  const previousPage = () => {
+    if(locationCount == 1){
+      setLocationCount(1)
+    } else {
+      setLocationCount((prevLocationCount) => prevLocationCount - 1);
+    }
+  };
 
   const navigate = useNavigate();
 
@@ -41,7 +56,11 @@ export default function Locations() {
 
         })}
       </div>
-      <CommonButton label="Load more" variant="primary" />
+      <div className={styles.pagination}>
+        <CommonButton label="< Previous" variant="primary" onClick={previousPage} />
+        <p>Page: {locationCount}</p>
+        <CommonButton label="Next >" variant="primary" onClick={nextPage} />
+      </div>
     </div>
   );
 }
