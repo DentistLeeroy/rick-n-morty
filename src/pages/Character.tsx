@@ -11,8 +11,8 @@ export default function Character() {
   let { id } = useParams();
 
   const CHARACTER_QUERY = gql `
-  query specificCharacter {
-    character(id:${id}) {
+  query specificCharacter($id: Int) {
+    character(id:$id) {
         id,
         image,
         name,
@@ -37,7 +37,10 @@ export default function Character() {
 
   const navigate = useNavigate();
 
-  const { loading, error, data } = useQuery(CHARACTER_QUERY);
+  const { loading, error, data } = useQuery(CHARACTER_QUERY, {
+    variables: {
+      id: id,
+    }});
 
   function goBack() {
     navigate(-1);

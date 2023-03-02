@@ -21,7 +21,7 @@ export default function Locations() {
 
   const navigate = useNavigate();
 
-  const { loading, error, data } = useQuery(LOCATIONS_QUERY);    
+  const { loading, error, data } = useQuery(LOCATIONS_QUERY);
 
   return(
     <div className={styles.locations}>
