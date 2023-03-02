@@ -9,11 +9,11 @@ import { allCharacters } from "./__generated__/allCharacters";
 
 export default function Characters() {
 
-  const [visibleCards, setVisibleCards] = useState(1);
+  const [offset, setOffset] = useState(0);
 
   const CHARACTERS_QUERY = gql `
-  query allCharacters($visibleCards: Int) {
-    characters(page: $visibleCards) {
+  query allCharacters($limit: Int, $offset: Int) {
+    characters(limit: $limit, offset: $offset) {
       results {
         id
         name
@@ -26,12 +26,13 @@ export default function Characters() {
   const navigate = useNavigate();
 
   const handleLoadMore = () => {
-    setVisibleCards((prevVisibleCards) => prevVisibleCards + 1);
+    setOffset((offset) => offset + 20);
   };
 
   const { loading, error, data } = useQuery<allCharacters>(CHARACTERS_QUERY, {
     variables: {
-      visibleCards: visibleCards,
+      limit: 20,
+      offset: 0,
     }
   });
 
