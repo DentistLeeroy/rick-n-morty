@@ -5,8 +5,6 @@ import CommonButton from "../components/library/buttons/CommonButton";
 import ListItem from "../components/library/visual/ListItem";
 import Avatar from "../components/library/visual/Avatar";
 import ListItemMany from "../components/library/visual/ListItemMany";
-import { allCharacters } from "./__generated__/allCharacters";
-import { specificCharacter } from "./__generated__/specificCharacter";
 
 export default function Character() {
 

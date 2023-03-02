@@ -5,15 +5,14 @@ import {useQuery, gql} from '@apollo/client';
 import { useNavigate } from "react-router-dom";
 import CommonButton from "../components/library/buttons/CommonButton";
 import { useState } from "react";
-import { allCharacters } from "./__generated__/allCharacters";
 
 export default function Characters() {
 
   const [offset, setOffset] = useState(0);
 
   const CHARACTERS_QUERY = gql `
-  query allCharacters($limit: Int, $offset: Int) {
-    characters(limit: $limit, offset: $offset) {
+  query allCharacters {
+    characters {
       results {
         id
         name
@@ -31,8 +30,6 @@ export default function Characters() {
 
   const { loading, error, data } = useQuery<any>(CHARACTERS_QUERY, {
     variables: {
-      limit: 20,
-      offset: offset,
     }
   });
 
