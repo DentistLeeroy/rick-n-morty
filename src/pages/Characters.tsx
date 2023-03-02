@@ -4,22 +4,29 @@ import Card from "../components/library/visual/Card";
 import {useQuery, gql} from '@apollo/client';
 import { useNavigate } from "react-router-dom";
 import CommonButton from "../components/library/buttons/CommonButton";
+import { useState } from "react";
 
 export default function Characters() {
 
+  const [visibleCards, setVisibleCards] = useState(1);
+
   const CHARACTERS_QUERY = gql `
   query allCharacters {
-    characters {
+    characters(page:${visibleCards}) {
       results {
-        id,
-        name,
-        species,
+        id
+        name
+        species
         image
       }
     }
   }`;
 
   const navigate = useNavigate();
+
+  const handleLoadMore = () => {
+    setVisibleCards((prevVisibleCards) => prevVisibleCards + 1);
+  };
 
   const { loading, error, data } = useQuery(CHARACTERS_QUERY);
 
@@ -31,17 +38,17 @@ export default function Characters() {
           {error && <p>There was an unexpected error</p>}
           {data && data.characters.results.map((character:any) => {
             
-            function click() {
+            function cardClick() {
               navigate(`/${character.id}`);
             }
               
             return (
-              <Card key={character.id} image={character.image} title={character.name} subtitle={character.species} onClick={click} />
-            );
+              <Card key={character.id} image={character.image} title={character.name} subtitle={character.species} onClick={cardClick} />
+            );  
             
           })}
         </div>
-        <CommonButton label="Load more" variant="primary" />
+        <CommonButton label="Load more" variant="primary" onClick={handleLoadMore}  />
     </div>
   );
 }
