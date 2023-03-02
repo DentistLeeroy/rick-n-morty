@@ -32,7 +32,7 @@ export default function Characters() {
   const { loading, error, data } = useQuery<allCharacters>(CHARACTERS_QUERY, {
     variables: {
       limit: 20,
-      offset: 0,
+      offset: offset,
     }
   });
 

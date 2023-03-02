@@ -13,7 +13,7 @@ export default function Character() {
 
   const CHARACTER_QUERY = gql `
   query specificCharacter($id: Int) {
-    character(id:$id) {
+    character(id: $id) {
         id,
         image,
         name,
