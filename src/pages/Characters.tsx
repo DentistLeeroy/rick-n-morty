@@ -30,7 +30,7 @@ export default function Characters() {
     }
   });
 
-  const [allData, setAllData] = useState(data);
+  const [allData, setAllData] = useState([]);
 
   const handleLoadMore = () => {
     setCurrentPage((currentPage) => currentPage + 1);
