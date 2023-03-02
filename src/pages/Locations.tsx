@@ -4,13 +4,11 @@ import {useQuery, gql} from '@apollo/client';
 import CardWithoutImage from "../components/library/visual/CardWithoutImage";
 import { useNavigate } from "react-router-dom";
 import CommonButton from "../components/library/buttons/CommonButton";
-import { useState } from "react";
-import { allLocations } from "./__generated__/allLocations";
+import { useEffect, useState } from "react";
 
 export default function Locations() {
 
-  const [currentPage, setCurrentPage] = useState(1);
-
+  
   const LOCATIONS_QUERY = gql `
   query allLocations($currentPage: Int) {
     locations(page: $currentPage) {
@@ -22,19 +20,10 @@ export default function Locations() {
     }
   }
   `;
-
-  const nextPage = () => {
-    setCurrentPage((currentPage) => currentPage + 1);
-  };
-
-  const previousPage = () => {
-    if(currentPage == 1){
-      setCurrentPage(1)
-    } else {
-      setCurrentPage((currentPage) => currentPage - 1);
-    }
-  };
-
+  
+  const [currentPage, setCurrentPage] = useState(1);
+  const [lastPage, setLastPage] = useState(0);
+  
   const navigate = useNavigate();
 
   const { loading, error, data } = useQuery<any>(LOCATIONS_QUERY, {
@@ -42,6 +31,28 @@ export default function Locations() {
       currentPage: currentPage,
     }
   });
+
+  useEffect(()=> {
+
+    if(data) {
+      if(data.locations.results.length < 20) {
+        setLastPage(currentPage);
+      } else if(data.locations.results.length == 0) {
+        setLastPage((currentPage) => currentPage - 1);
+      }
+    }
+
+  }, [data])
+
+
+  const nextPage = () => {
+    setCurrentPage((currentPage) => currentPage + 1);
+  };
+
+  const previousPage = () => {
+    setCurrentPage((currentPage) => currentPage - 1);
+    setLastPage(0);
+  };
 
   return(
     <div className={styles.locations}>
@@ -62,9 +73,9 @@ export default function Locations() {
         })}
       </div>
       <div className={styles.pagination}>
-        <CommonButton label="< Previous" variant="primary" onClick={previousPage} />
-        <p>Page: {currentPage}</p>
-        <CommonButton label="Next >" variant="primary" onClick={nextPage} />
+        {currentPage != 1 && <CommonButton label="< Previous" variant="primary" onClick={previousPage} />}
+        <p>{currentPage}</p>
+        {lastPage == 0 && <CommonButton label="Next >" variant="primary" onClick={nextPage} />}
       </div>
     </div>
   );

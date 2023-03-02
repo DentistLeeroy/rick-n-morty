@@ -4,14 +4,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import CommonButton from "../components/library/buttons/CommonButton";
 import ListItem from "../components/library/visual/ListItem";
 import ListItemMany from "../components/library/visual/ListItemMany";
-import { specificEpisode } from "./__generated__/specificEpisode";
 
 export default function Episode() {
 
   let { id } = useParams();
 
   const EPISODE_QUERY = gql `
-  query specificEpisode($id: Int) {
+  query specificEpisode($id: ID!) {
     episode(id: $id) {
         id,
         name,

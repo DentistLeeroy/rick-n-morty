@@ -2,10 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import { BrowserRouter } from 'react-router-dom'
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
+
+const httpLink = createHttpLink({uri: "https://rickandmortyapi.com/graphql"})
 
 const client = new ApolloClient({
-  uri: 'https://rickandmortyapi.com/graphql',
+  link: httpLink,
   cache: new InMemoryCache()
 });
 

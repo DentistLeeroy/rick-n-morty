@@ -4,14 +4,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import CommonButton from "../components/library/buttons/CommonButton";
 import ListItem from "../components/library/visual/ListItem";
 import ListItemMany from "../components/library/visual/ListItemMany";
-import { allLocations } from "./__generated__/allLocations";
 
 export default function Location() {
 
   let { id } = useParams();
 
   const LOCATION_QUERY = gql `
-  query specificLocation($id: Int) {
+  query specificLocation($id: ID!) {
     location(id:$id) {
         id,
         name,

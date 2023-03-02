@@ -11,7 +11,7 @@ export default function Character() {
   let { id } = useParams();
 
   const CHARACTER_QUERY = gql `
-  query specificCharacter($id: Int) {
+  query specificCharacter($id: ID!) {
     character(id: $id) {
         id,
         image,
@@ -50,8 +50,8 @@ export default function Character() {
   return(
     <>
       {loading && <p>Loading ...</p>}
-      {error && <p>There was an unexpected error</p>}
-      {data.character && <div className={styles.character}>
+      {error && <p>{String(error)}</p>}
+      {data && <div className={styles.character}>
           <CommonButton variant="secondary" label="Go back" onClick={goBack} />
           <Avatar status={data.character.status} image={data.character.image} character={data.character.name} />
           <h1>{data.character.name}</h1>
